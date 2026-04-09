@@ -13,6 +13,13 @@ return new class extends Migration
     {
         Schema::create('apitokens', function (Blueprint $table) {
             $table->id();
+            $table->foreignUuid('workspace_id')->constrained(
+                table: 'workspaces',
+                indexName: 'apitokens_workspace_id',
+            )->cascadeOnDelete();
+            $table->string('name', 100);
+            $table->string('token', 100);
+            $table->timestamp('revoked_at')->nullable();
             $table->timestamps();
         });
     }

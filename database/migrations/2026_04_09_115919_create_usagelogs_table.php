@@ -13,7 +13,18 @@ return new class extends Migration
     {
         Schema::create('usagelogs', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
+            $table->foreignUuid('workspace_id')->constrained(
+                table: 'workspaces',
+                indexName: 'usagelogs_workspace_id',
+            )->cascadeOnDelete();
+            $table->foreignId('apitoken_id')->constrained(
+                table: 'apitokens',
+                indexName: 'usagelogs_apitoken_id',
+            )->cascadeOnDelete();
+            $table->string('service', 50);
+            $table->integer('duration');
+            $table->decimal('cost_per_second', 10, 4);
+            $table->timestamp('created_at')->useCurrent();
         });
     }
 

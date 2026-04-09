@@ -13,6 +13,11 @@ return new class extends Migration
     {
         Schema::create('quotas', function (Blueprint $table) {
             $table->id();
+            $table->foreignUuid('workspace_id')->constrained(
+                table: 'workspaces',
+                indexName: 'quotas_workspace_id',
+            )->cascadeOnDelete();
+            $table->decimal('monthly_limit', 10, 2)->nullable();
             $table->timestamps();
         });
     }
