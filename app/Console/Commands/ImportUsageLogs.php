@@ -11,20 +11,28 @@ class ImportUsageLogs extends Command
      *
      * @var string
      */
-    protected $signature = 'app:import-usage-logs';
+    protected $signature = 'import:usage-logs {file}';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'Command description';
+    protected $description = 'Import usage logs dari file CSV';
 
     /**
      * Execute the console command.
      */
     public function handle()
     {
-        //
+        $path = $this->argument('file');
+
+        if (!file_exists($path)) {
+            $this->error("File tidak ditemukan: {$path}");
+        }
+
+        $handle = fopen($path, 'r');
+        $headers = fgetcsv($handle);
+        $count = 0;
     }
 }
