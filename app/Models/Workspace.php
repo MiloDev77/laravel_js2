@@ -20,12 +20,12 @@ class Workspace extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function usagelogs()
+    public function usageLogs()
     {
         return $this->hasMany(Usagelog::class, 'workspace_id');
     }
 
-    public function apitokens()
+    public function apiTokens()
     {
         return $this->hasMany(Apitoken::class, 'workspace_id');
     }
@@ -37,7 +37,7 @@ class Workspace extends Model
 
     public function currentMonthUsage()
     {
-        return $this->usagelogs()
+        return $this->usageLogs()
             ->whereYear('created_at', now()->year)
             ->whereMonth('created_at', now()->month)
             ->selectRaw('SUM(duration * cost_per_second) as total')

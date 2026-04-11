@@ -17,7 +17,7 @@ return new class extends Migration
                 table: 'users',
                 indexName: 'workspaces_user_id',
             )->cascadeOnDelete();
-            $table->string('name', 100);
+            $table->string('name', 100)->unique();
             $table->text('description')->nullable();
             $table->timestamps();
         });

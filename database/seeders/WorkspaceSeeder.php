@@ -53,13 +53,13 @@ class WorkspaceSeeder extends Seeder
                 Apitoken::create([
                     'workspace_id' => $workspace->id,
                     'name' => fake()->word(),
-                    'token' => bin2hex(Str::random(40)),
+                    'token' => bin2hex(Str::random(25)),
                 ]);
 
                 Apitoken::create([
                     'workspace_id' => $workspace->id,
                     'name' => fake()->word(),
-                    'token' => bin2hex(Str::random(40)),
+                    'token' => bin2hex(Str::random(25)),
                     'revoked_at' => now(),
                 ]);
 

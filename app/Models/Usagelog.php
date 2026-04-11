@@ -20,7 +20,7 @@ class Usagelog extends Model
         return $this->belongsTo(Workspace::class);
     }
 
-    public function apitoken()
+    public function apiToken()
     {
         return $this->belongsTo(Apitoken::class);
     }
